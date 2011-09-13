@@ -1,21 +1,20 @@
 #===============================================================================
 # Watches files in specified directory and their subdirectories,
 # and handles them appropriately.
-# 
-# IE: SASS files (.sass) are automatically formatted to .css files.
 #===============================================================================
 import sys
 import time
 import os
 
-#custom handling
+#--- custom handling here ---#
 
 def convert_shpaml(file_name):
     """
     hardcoded lambda for converting shpaml
     """
     basename = os.path.basename(file_name)
-    converted_name = os.path.splitext(basename)[0] + ".html"
+    dir = file_name[0:len(file_name) - len(basename)]
+    converted_name = os.path.join(dir,os.path.splitext(basename)[0] + ".html")
     os.system("python /home/nubela/Workspace/transcompiler-watcher/src/shpaml.py "  + file_name + " > " + converted_name)
 
 #--- config here ---#
